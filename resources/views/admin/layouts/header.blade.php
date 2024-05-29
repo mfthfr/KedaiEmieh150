@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('admin')}}/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('admin')}}/img/logo.png">
     <title>Kedai Emieh 150</title>
     <!-- Custom CSS -->
     <link href="{{asset('admin')}}/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
@@ -17,12 +17,8 @@
     <link href="{{asset('admin')}}/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{asset('admin')}}/dist/css/style.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <!-- Datatables -->
+    <link href="{{asset('admin')}}/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 <body>
@@ -54,20 +50,11 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
-                            <b class="logo-icon">
-                                <!-- Dark Logo icon -->
-                                <img src="{{asset('admin')}}/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo icon -->
-                                <img src="{{asset('admin')}}/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
-                            </b>
-                            <!--End Logo icon -->
+                        <a href="">
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
                                 <img src="{{asset('admin')}}/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="{{asset('admin')}}/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
                             </span>
                         </a>
                     </div>
@@ -209,7 +196,7 @@
                                 <img src="{{asset('admin')}}/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
                                     width="40">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                        class="text-dark">Admin</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">

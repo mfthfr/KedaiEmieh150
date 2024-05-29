@@ -19,6 +19,10 @@
 
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Pengelolaan</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{url('admin/kategori_produk')}}"
+                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+                                    class="hide-menu">Kategori Produk</span></a>
+                        </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                                     class="hide-menu">Stok Produk</span></a>
@@ -43,7 +47,8 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-                                    class="hide-menu">Reservasi Meja</span></a></li>
+                                    class="hide-menu">Reservasi Meja</span></a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
