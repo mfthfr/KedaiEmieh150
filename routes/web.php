@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,11 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/kategori_produk', [KategoriProdukController::class, 'index']);
     Route::post('/kategori_produk/store', [KategoriProdukController::class, 'store']);
-    Route::put('/kategori_produk/update', [KategoriProdukController::class, 'update']);
+    Route::put('/kategori_produk/update/{id}', [KategoriProdukController::class, 'update']);
+    Route::delete('/kategori_produk/{id}', [KategoriProdukController::class, 'destroy'])->name('kategori_produk.destroy');
+
+    Route::resource('produk', ProdukController::class);
+    Route::get('/produk/kategori/{id}', [ProdukController::class, 'showKategori'])->name('produk.kategori');
 });
 });
 

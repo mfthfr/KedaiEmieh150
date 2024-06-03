@@ -27,21 +27,30 @@
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                                     class="hide-menu">Stok Produk</span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="form-inputs.html" class="sidebar-link"><span
-                                            class="hide-menu"> Aneka Mie
-                                        </span></a>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.index')}}" class="sidebar-link">
+                                        <span class="hide-menu"> Semua Produk </span>
+                                    </a>
                                 </li>
-                                <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><span
-                                            class="hide-menu"> Cemilan
-                                        </span></a>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.kategori', ['id' => 1])}}" class="sidebar-link">
+                                        <span class="hide-menu"> Aneka Mie </span>
+                                    </a>
                                 </li>
-                                <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span
-                                            class="hide-menu"> Nasi
-                                        </span></a>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.kategori', ['id' => 2])}}" class="sidebar-link">
+                                        <span class="hide-menu"> Minuman </span>
+                                    </a>
                                 </li>
-                                <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span
-                                            class="hide-menu"> Minuman
-                                        </span></a>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.kategori', ['id' => 3])}}" class="sidebar-link">
+                                        <span class="hide-menu"> Cemilan </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.kategori', ['id' => 4])}}" class="sidebar-link">
+                                        <span class="hide-menu"> Aneka Nasi </span>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
