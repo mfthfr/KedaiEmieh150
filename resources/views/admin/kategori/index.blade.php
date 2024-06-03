@@ -55,6 +55,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Kategori Produk</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,6 +64,35 @@
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{$k->nama_kategori}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateModal{{$k->id}}">
+                                        Update
+                                    </button>
+                                    <!-- Modal Update -->
+                                    <div class="modal fade" id="updateModal{{$k->id}}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel{{$k->id}}" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="updateModalLabel{{$k->id}}">Update Kategori Produk</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form action="{{url('admin/kategori_produk/update/'.$k->id)}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="text" name="nama_kategori" class="form-control" value="{{$k->nama_kategori}}" placeholder="Kategori Produk">
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

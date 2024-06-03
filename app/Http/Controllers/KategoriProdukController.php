@@ -50,13 +50,13 @@ class KategoriProdukController extends Controller
      */
     public function edit(KategoriProduk $kategoriProduk)
     {
-        return view('admin.kategori.edit', compact('kategori'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KategoriProduk $kategoriProduk)
+    public function update(Request $request, $id)
     {
         // validasi
         $request->validate([
@@ -65,7 +65,7 @@ class KategoriProdukController extends Controller
         
         // update kategori produk
         DB::table('kategori_produk')
-            ->where('id', $kategoriProduk->id)
+            ->where('id', $id)
             ->update(['nama_kategori' => $request -> nama_kategori]);
         return redirect('admin/kategori_produk');
     }

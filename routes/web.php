@@ -14,4 +14,5 @@ Route::get('/dashboard', function(){
 Route::prefix('admin')->group(function(){
     Route::get('/kategori_produk', [KategoriProdukController::class, 'index']);
     Route::post('/kategori_produk/store', [KategoriProdukController::class, 'store']);
+    Route::put('/kategori_produk/update', [KategoriProdukController::class, 'update']);
 });
