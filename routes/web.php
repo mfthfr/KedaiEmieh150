@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home');
+});
+Route::get('/reservasi', function(){
+    return view('front.reservasi.index');
 });
 
 // Route::get('/dashboard', function(){
