@@ -54,9 +54,17 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
-                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
-                                    class="hide-menu">Reservasi Meja</span></a>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link sidebar-link" href="{{url('admin/meja')}}" aria-expanded="false">
+                                <i data-feather="calendar" class="feather-icon"></i>
+                                <span class="hide-menu">Meja</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link sidebar-link" href="{{route('reservasi.index')}}" aria-expanded="false">
+                                <i data-feather="calendar" class="feather-icon"></i>
+                                <span class="hide-menu">Reservasi Meja</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>

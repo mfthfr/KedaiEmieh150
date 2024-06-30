@@ -1,34 +1,52 @@
-@extends('front.layouts.app')
+@extends('admin.layouts.app')
 
 @section('konten')
-<style>
-    .form-container {
-        max-width: 700px; /* Atur lebar maksimum form */
-        margin: 0 auto; /* Pusatkan form */
-    }
-    .form-container .form-group {
-        margin-bottom: 15px; /* Kurangi jarak antar elemen form */
-    }
-    .form-container input, 
-    .form-container select, 
-    .form-container textarea {
-        padding: 5px; /* Kurangi padding dalam elemen form */
-    }
-    .form-container .form-check {
-        margin-right: 10px; /* Atur jarak antar elemen radio */
-    }
-</style>
 
-<section class="banner-area banner-area2 menu-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 align="center"><i>Reservasi Meja</i></h1>
-                <p class="pt-2 text-center"><i>Cukup dia aja yang gak pasti, acaramu harus pasti dengan reservasi meja terlebih dahulu</i></p>
-                <div class="card form-container">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Tambah Reservasi Meja</h2>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="" class="text-muted">Tambah Reservasi Meja</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
                 <div class="card-body">
-                <form method="post" action="{{route('front.reservasi.store')}}" enctype="multipart/form-data" id="reservationForm">
+                <form method="post" action="{{route('reservasi.store')}}" enctype="multipart/form-data">
                     @csrf
+                    <div class="form-group row">
+                        <label for="text1" class="col-4 col-form-label">Kode</label> 
+                        <div class="col-8">
+                            <input id="text1" name="kode" type="text" class="form-control @error('kode') is-invalid @enderror" value="{{$kodeReservasi}}" readonly>
+                            @error('kode')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="text2" class="col-4 col-form-label">Nama</label> 
                         <div class="col-8">
@@ -86,6 +104,42 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="jenis_pembayaran" class="col-4 col-form-label">Jenis Pembayaran</label>
+                        <div class="col-8 d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('jenis_pembayaran') is-invalid @enderror" type="radio" name="jenis_pembayaran" id="transfer" value="transfer" {{ old('jenis_pembayaran') == 'transfer' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="transfer">
+                                    Transfer
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('jenis_pembayaran') is-invalid @enderror" type="radio" name="jenis_pembayaran" id="cash" value="cash" {{ old('jenis_pembayaran') == 'cash' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="cash">
+                                    Cash
+                                </label>
+                            </div>
+                            @error('jenis_pembayaran')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="select" class="col-4 col-form-label">Status</label> 
+                        <div class="col-8">
+                            <select id="select" name="status" class="custom-select @error('status') is-invalid @enderror">
+                                    <option value="Disetujui">Disetujui</option>
+                                    <option value="Belum Disetujui">Belum Disetujui</option>
+                            </select>
+                            @error('status')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="meja_list" class="col-4 col-form-label">Meja</label> 
                         <div class="col-8">
                             <table class="table table-bordered" id="mejaList">
@@ -118,73 +172,19 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="rekeningButton" class="col-4 col-form-label">Nomor Rekening</label>
-                        <div class="col-8">
-                            <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#rekeningModal">
-                                Lihat Detail Rekening
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="bukti" class="col-4 col-form-label">Bukti</label> 
-                        <div class="col-8">
-                            <input id="bukti" name="bukti" type="file" class=" @error('bukti') is-invalid @enderror">
-                            @error('bukti')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group row">
                         <div class="offset-4 col-8">
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
+                            <a href="{{ route('reservasi.index') }}" class="btn btn-secondary">Kembali</a>
                         </div>
                     </div>
                 </form>
                 </div>
-            </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Modal -->
-<div class="modal fade" id="rekeningModal" tabindex="-1" role="dialog" aria-labelledby="rekeningModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rekeningModalLabel">Detail Nomor Rekening</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Bank: BRI</p>
-                <p>Atas Nama: Admin Kedai</p>
-                <p>Nomor Rekening: <span id="nomorRekening">33365657876</span></p>
-                <button class="btn btn-primary" onclick="copyToClipboard()">Salin Nomor Rekening</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function copyToClipboard() {
-        const nomorRekening = document.getElementById('nomorRekening').textContent;
-        
-        navigator.clipboard.writeText(nomorRekening).then(function() {
-            alert('Nomor rekening telah disalin!');
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-        });
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
         const tglReservasi = document.getElementById('tgl_reservasi');
         const jamReservasi = document.getElementById('jam_reservasi');
@@ -195,7 +195,7 @@
 
             if (tanggal && waktu) {
                 console.log('Sending request to check availability...'); // Debugging line
-                fetch('{{ route("front.reservasi.checkAvailability") }}', {
+                fetch('{{ route("admin.reservasi.checkAvailability") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -229,10 +229,6 @@
         tglReservasi.addEventListener('change', checkAvailability);
         jamReservasi.addEventListener('change', checkAvailability);
     });
-
-    function resetForm() {
-        document.getElementById('reservationForm').reset();
-    }
 </script>
 
 @endsection

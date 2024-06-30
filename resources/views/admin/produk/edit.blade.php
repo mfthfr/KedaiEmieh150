@@ -8,7 +8,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-7 align-self-center">
-            <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Tambah Produk</h2>
+            <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Edit Produk</h2>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
@@ -25,49 +25,55 @@
             <div class="card">
                 <div class="card-body">
                     @foreach ($produk as $p)
-                    <form method="post" action="{{ route('produk.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('produk.update', $p->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
                             <label for="text1" class="col-4 col-form-label">Kode</label> 
                             <div class="col-8">
-                                <input id="text1" name="kode" type="text" class="form-control">
+                                <input id="text1" name="kode" type="text" class="form-control" value="{{$p->kode}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="text2" class="col-4 col-form-label">Nama</label> 
                             <div class="col-8">
-                                <input id="text2" name="nama" type="text" class="form-control">
+                                <input id="text2" name="nama" type="text" class="form-control" value="{{$p->nama}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="text4" class="col-4 col-form-label">Harga Awal</label> 
+                            <div class="col-8">
+                                <input id="text4" name="harga_awal" type="text" class="form-control" value="{{$p->harga_awal}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="text4" class="col-4 col-form-label">Harga</label> 
                             <div class="col-8">
-                                <input id="text4" name="harga" type="text" class="form-control">
+                                <input id="text4" name="harga" type="text" class="form-control" value="{{$p->harga}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="text4" class="col-4 col-form-label">Stok</label> 
                             <div class="col-8">
-                                <input id="text4" name="stok" type="text" class="form-control">
+                                <input id="text4" name="stok" type="text" class="form-control" value="{{$p->stok}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="text4" class="col-4 col-form-label">Tanggal Kedaluarsa</label> 
                             <div class="col-8">
-                                <input id="text4" name="tgl_exp" type="date" class="form-control">
+                                <input id="text4" name="tgl_exp" type="date" class="form-control" value="{{$p->tgl_exp}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="foto" class="col-4 col-form-label">Foto</label> 
                             <div class="col-8">
-                                <input id="foto" name="foto" type="file" class="form-control">
+                                <input id="foto" name="foto" type="file" class="form-control" value="{{$p->foto}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="textarea" class="col-4 col-form-label">Deskripsi</label> 
                             <div class="col-8">
-                                <textarea id="textarea" name="deskripsi" cols="40" rows="5" class="form-control"></textarea>
+                                <textarea id="textarea" name="deskripsi" cols="40" rows="5" class="form-control" value="{{$p->deskripsi}}"></textarea>
                             </div>
                         </div> 
                         <div class="form-group row">

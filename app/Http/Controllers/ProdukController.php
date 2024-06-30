@@ -35,6 +35,7 @@ class ProdukController extends Controller
         DB::table('produk')->insert([
             'kode' => $request -> kode,
             'nama' => $request -> nama,
+            'harga_awal' => $request -> harga_awal,
             'harga' => $request -> harga,
             'stok' => $request -> stok,
             'tgl_exp' => $request -> tgl_exp,
@@ -57,7 +58,10 @@ class ProdukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // edit produk
+        $kategori = DB::table('kategori_produk')->get();
+        $produk = DB::table('produk')->where('id', $id)->get();
+        return view('admin.produk.edit', compact('kategori', 'produk'));
     }
 
     /**
@@ -65,7 +69,17 @@ class ProdukController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('produk')->where('id', $id)->update([
+            'kode' => $request -> kode,
+            'nama' => $request -> nama,
+            'harga_awal' => $request -> harga_awal,
+            'harga' => $request -> harga,
+            'stok' => $request -> stok,
+            'tgl_exp' => $request -> tgl_exp,
+            'deskripsi' => $request -> deskripsi,
+            'kategori_produk_id' => $request -> kategori_produk_id,
+        ]);
+        return redirect('admin/produk');
     }
 
     /**

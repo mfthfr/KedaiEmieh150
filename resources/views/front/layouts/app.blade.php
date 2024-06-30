@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo-area" style="padding-left: 3px;">
-                        <a href="index.html"><img src="{{asset('front')}}/assets/images/logo/kedaiemiehlogotrans.png" alt="logo" ></a>
+                        <a href=""><img src="{{asset('front')}}/assets/images/logo/kedaiemiehlogotrans.png" alt="logo" ></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -46,8 +46,8 @@
                         <ul>
                             <li class="active" ><a href="{{url('/')}}">home</a></li>
                             <li><a href="{{url('/reservasi')}}">Reservasi Meja</a></li>
-                            <li><a href="">Menu</a></li>
-                            <li><a href="">contact</a></li>
+                            <li><a href="{{url('/menu')}}">Menu</a></li>
+                            <li><a href="{{url('/kontak')}}">Kontak Kami</a></li>
                         </ul>
                     </div>
                 </div>

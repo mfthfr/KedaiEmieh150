@@ -59,6 +59,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="text4" class="col-4 col-form-label">Harga Awal</label> 
+                        <div class="col-8">
+                            <input id="text4" name="harga_awal" type="text" class="form-control @error('harga_awal') is-invalid @enderror">
+                            @error('harga_awal')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="text4" class="col-4 col-form-label">Harga</label> 
                         <div class="col-8">
                             <input id="text4" name="harga" type="text" class="form-control @error('harga') is-invalid @enderror">

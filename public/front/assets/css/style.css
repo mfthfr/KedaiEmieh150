@@ -327,7 +327,7 @@ textarea:focus {
     top: 20px;
     left: 50%;
     width: 80%;
-    z-index: 1;
+    z-index: 99;
     -webkit-transform: translate(-50%, 0);
     -moz-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
