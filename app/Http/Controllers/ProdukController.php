@@ -32,17 +32,76 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+        $kodeProduk = $this->generateKodeProduk($request->kategori_produk_id);
+        $fileName = null;
+
+        if(!empty($request->foto)){
+            $fileName = 'foto-'.$kodeProduk.'.'.$request->foto->extension();
+            switch($request->kategori_produk_id){
+                case '1':
+                    $request->foto->move(public_path('admin/img/produk/aneka mie'), $fileName);
+                    break;
+                case '2':
+                    $request->foto->move(public_path('admin/img/produk/minuman'), $fileName);
+                    break;
+                case '3':
+                    $request->foto->move(public_path('admin/img/produk/cemilan'), $fileName);
+                    break;
+                case '4':
+                    $request->foto->move(public_path('admin/img/produk/aneka nasi'), $fileName);
+                    break;
+                case '6':
+                    $request->foto->move(public_path('admin/img/produk/aneka toping'), $fileName);
+                    break;
+            }
+        }
+        
         DB::table('produk')->insert([
-            'kode' => $request -> kode,
+            'kode' => $kodeProduk,
             'nama' => $request -> nama,
             'harga_awal' => $request -> harga_awal,
             'harga' => $request -> harga,
             'stok' => $request -> stok,
             'tgl_exp' => $request -> tgl_exp,
+            'foto' => $fileName,
             'deskripsi' => $request -> deskripsi,
             'kategori_produk_id' => $request -> kategori_produk_id,
         ]);
         return redirect()->route('produk.index');
+    }
+
+    private function generateKodeProduk($kategoriID)
+    {
+        switch($kategoriID){
+            case '1':
+                $prefix = 'AM';
+                break;
+            case '2':
+                $prefix = 'MN';
+                break;
+            case '3':
+                $prefix = 'CM';
+                break;
+            case '4':
+                $prefix = 'AN';
+                break;
+            case '6':
+                $prefix = 'AT';
+                break;
+            default:
+                $prefix = 'XX';
+                break;
+        }
+        
+        $lastProduk = DB::table('produk')->where('kode', 'like', $prefix . '%')->orderBy('kode', 'desc')->first();
+        if ($lastProduk) {
+            $lastNumber = (int) substr($lastProduk->kode, 2);
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
+
+        return $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -50,7 +109,8 @@ class ProdukController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produk = Produk::with('kategori_produk')->where('id', $id)->first();
+        return view('admin.produk.detail', compact('produk'));
     }
 
     /**
@@ -64,18 +124,58 @@ class ProdukController extends Controller
         return view('admin.produk.edit', compact('kategori', 'produk'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
+        // mengambil produk lama
+        $oldProduct = DB::table('produk')->where('id', $id)->first();
+
+        // cek apakah kategori produk berubah
+        $isCategoryChanged = $oldProduct->kategori_produk_id != $request->kategori_produk_id;
+
+        // jika kategori produk beruban, hasilkan kode baru
+        if($isCategoryChanged){
+            $kodeProduk = $this->generateKodeProduk($request->kategori_produk_id);
+        }else{
+            $kodeProduk = $request->kode;
+        }
+
+        // pindahkan foto jika diunggah
+        $fileName = $oldProduct->foto;
+        if(!empty($request->foto)){
+            // hapus gambar lama
+            if($oldProduct->foto && file_exists(public_path('admin/img/produk/'.$oldProduct->foto))){
+                unlink(public_path('admin/img/produk/'.$oldProduct->foto));
+            }
+
+            $fileName = 'foto-'.$kodeProduk.'.'.$request->foto->extension();
+            switch($request->kategori_produk_id){
+                case '1':
+                    $request->foto->move(public_path('admin/img/produk/aneka mie'), $fileName);
+                    break;
+                case '2':
+                    $request->foto->move(public_path('admin/img/produk/minuman'), $fileName);
+                    break;
+                case '3':
+                    $request->foto->move(public_path('admin/img/produk/cemilan'), $fileName);
+                    break;
+                case '4':
+                    $request->foto->move(public_path('admin/img/produk/aneka nasi'), $fileName);
+                    break;
+                case '6':
+                    $request->foto->move(public_path('admin/img/produk/aneka toping'), $fileName);
+                    break;
+            }
+        }
+
         DB::table('produk')->where('id', $id)->update([
-            'kode' => $request -> kode,
+            'kode' => $kodeProduk,
             'nama' => $request -> nama,
             'harga_awal' => $request -> harga_awal,
             'harga' => $request -> harga,
             'stok' => $request -> stok,
             'tgl_exp' => $request -> tgl_exp,
+            'foto' => $fileName,
             'deskripsi' => $request -> deskripsi,
             'kategori_produk_id' => $request -> kategori_produk_id,
         ]);

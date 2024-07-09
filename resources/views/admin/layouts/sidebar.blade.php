@@ -10,10 +10,10 @@
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Mode Kasir</span></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{route('transaksi.index')}}"
                                 aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
                                     class="hide-menu">Pembayaran</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{route('laporan.index')}}"
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
                                     class="hide-menu">Laporan Penjualan</span></a></li>
 
@@ -50,6 +50,11 @@
                                 <li class="sidebar-item">
                                     <a href="{{route('produk.kategori', ['id' => 4])}}" class="sidebar-link">
                                         <span class="hide-menu"> Aneka Nasi </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{{route('produk.kategori', ['id' => 6])}}" class="sidebar-link">
+                                        <span class="hide-menu"> Aneka Toping </span>
                                     </a>
                                 </li>
                             </ul>

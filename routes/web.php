@@ -6,6 +6,9 @@ use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TransaksiPenjualanController;
+use App\Http\Controllers\LaporanPenjualanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +29,8 @@ Route::get('/reservasi', [ReservasiFrontController::class, 'index'])->name('fron
 Route::get('/reservasi/create', [ReservasiFrontController::class, 'create'])->name('front.reservasi.create');
 Route::post('/reservasi', [ReservasiFrontController::class, 'store'])->name('front.reservasi.store');
 Route::post('/reservasi/check-availability', [ReservasiFrontController::class, 'checkAvailability'])->name('front.reservasi.checkAvailability');
+
+Route::get('/menu', [MenuController::class, 'index'])->name('front.menu.index');
 
 // Route::get('/dashboard', function(){
 //     return view('admin.dashboard');
@@ -51,10 +56,15 @@ Route::prefix('admin')->group(function(){
 
     Route::resource('reservasi', ReservasiController::class);
     Route::post('/reservasi/check-availability', [ReservasiController::class, 'checkAvailability'])->name('admin.reservasi.checkAvailability');
+
+    Route::resource('transaksi', TransaksiPenjualanController::class);
+
+    Route::resource('laporan', LaporanPenjualanController::class);
+    Route::get('laporan/{id}/download', [LaporanPenjualanController::class, 'downloadPDF'])->name('laporan.downloadPDF');
 });
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

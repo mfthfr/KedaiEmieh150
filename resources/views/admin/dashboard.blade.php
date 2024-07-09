@@ -25,11 +25,13 @@
             <div class="d-flex d-lg-flex d-md-block align-items-center">
                 <div>
                     <div class="d-inline-flex align-items-center">
-                        <h2 class="text-dark mb-1 font-weight-medium">{{$kategori}}</h2>
+                        <h2 class="text-dark mb-1 font-weight-medium">{{$produk}}</h2>
                         <span
-                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
+                            class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">Produk</span>
                     </div>
-                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Daftar Kategori</h6>
+                    <a href="{{route('produk.index')}}">
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Daftar Produk</h6>
+                    </a>
                 </div>
                 <div class="ml-auto mt-md-3 mt-lg-0">
                     <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
@@ -42,8 +44,8 @@
             <div class="d-flex d-lg-flex d-md-block align-items-center">
                 <div>
                     <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
-                            class="set-doller">$</sup>18,306</h2>
-                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Earnings of Month
+                            class="set-doller">Rp</sup>{{ number_format($total_harga, 0, ',', '.') }}</h2>
+                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Penghasilan Kotor
                     </h6>
                 </div>
                 <div class="ml-auto mt-md-3 mt-lg-0">
@@ -61,7 +63,7 @@
                         <span
                             class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
                     </div>
-                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Projects</h6>
+                    <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Penghasilan Bersih</h6>
                 </div>
                 <div class="ml-auto mt-md-3 mt-lg-0">
                     <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>

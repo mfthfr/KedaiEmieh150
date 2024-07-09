@@ -24,4 +24,13 @@ class Produk extends Model
     public function kategori_produk(){
         return $this->belongsTo(KategoriProduk::class);
     }
+    public function transaksi_penjualan()
+    {
+        return $this->belongsToMany(TransaksiPenjualan::class, 'produk_transaksi', 'produk_id', 'transaksi_penjualan_id')
+                    ->withPivot('jumlah'); // Jika Anda ingin mengakses kolom 'jumlah' pada pivot table
+    }
+    public function laporan()
+    {
+        return $this->belongsToMany(LaporanPenjualan::class, 'laporan_produk', 'produk_id', 'laporan_id');
+    }
 }

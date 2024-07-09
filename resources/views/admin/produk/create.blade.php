@@ -37,17 +37,6 @@
                 <form method="post" action="{{ route('produk.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
-                        <label for="text1" class="col-4 col-form-label">Kode</label> 
-                        <div class="col-8">
-                            <input id="text1" name="kode" type="text" class="form-control @error('kode') is-invalid @enderror">
-                            @error('kode')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="text2" class="col-4 col-form-label">Nama</label> 
                         <div class="col-8">
                             <input id="text2" name="nama" type="text" class="form-control @error('nama') is-invalid @enderror">

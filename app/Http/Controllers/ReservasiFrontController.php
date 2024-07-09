@@ -36,15 +36,13 @@ class ReservasiFrontController extends Controller
             'meja_id' => 'required|exists:meja,id',
         ]);
 
-        $kode = $request->kode;
+        $kodeReservasi = $this->generateKodeReservasi();
         $fileName = '';
 
-        if($request->jenis_pembayaran === 'transfer' && $request->hasFile('bukti')){            
-            $fileName = 'bukti-'.$kode.'.'.$request->bukti->extension();
+        if($request->hasFile('bukti')){            
+            $fileName = 'bukti-'.$kodeReservasi.'.'.$request->bukti->extension();
             $request->bukti->move(public_path('admin/img/bukti'), $fileName);
         }
-
-        $kodeReservasi = $this->generateKodeReservasi();
         
         Reservasi::create([
             'kode' => $kodeReservasi,

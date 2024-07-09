@@ -67,13 +67,14 @@
                         <div class="form-group row">
                             <label for="foto" class="col-4 col-form-label">Foto</label> 
                             <div class="col-8">
-                                <input id="foto" name="foto" type="file" class="form-control" value="{{$p->foto}}">
+                                <input id="foto" name="foto" type="file" class="form-control">
+                                <p style="color: red;">{{$p->foto}}</p>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="textarea" class="col-4 col-form-label">Deskripsi</label> 
                             <div class="col-8">
-                                <textarea id="textarea" name="deskripsi" cols="40" rows="5" class="form-control" value="{{$p->deskripsi}}"></textarea>
+                                <textarea id="textarea" name="deskripsi" cols="40" rows="5" class="form-control">{{$p->deskripsi}}</textarea>
                             </div>
                         </div> 
                         <div class="form-group row">
