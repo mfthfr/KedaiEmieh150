@@ -50,6 +50,10 @@
                                     <td>{{ $produk->stok }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Diskon</th>
+                                    <td>{{ $produk->diskon }}</td>
+                                </tr>
+                                <tr>
                                     <th>Tanggal Kedaluarsa</th>
                                     <td>{{ $produk->tgl_exp }}</td>
                                 </tr>

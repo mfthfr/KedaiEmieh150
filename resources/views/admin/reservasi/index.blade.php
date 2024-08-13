@@ -69,7 +69,7 @@
                             @endif
                           </td>
                           <td>
-                              <a href="" class="btn btn-sm btn-warning">
+                              <a href="{{route('reservasi.edit', $r->id)}}" class="btn btn-sm btn-warning">
                                   <i class="fas fa-edit"></i>
                               </a>
                               <a href="{{route('reservasi.show', $r->id)}}" class="btn btn-sm btn-success">
@@ -84,7 +84,7 @@
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h3 class="modal-title" id="deleteModalLabel">Hapus Kategori Produk</h3>
+                                      <h3 class="modal-title" id="deleteModalLabel">Hapus Reservasi</h3>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Kembali</button>
-                                      <form action="" method="POST" style="display:inline;">
+                                      <form action="{{route ('reservasi.destroy', $r->id)}}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

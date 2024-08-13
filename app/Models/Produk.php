@@ -9,6 +9,7 @@ class Produk extends Model
 {
     use HasFactory;
     protected $table = 'produk';
+    public $timestamps = false;
     protected $fillable = 
     [
         'kode',
@@ -16,9 +17,11 @@ class Produk extends Model
         'harga_awal',
         'harga',
         'stok',
+        'diskon',
         'tgl_exp',
         'foto',
         'deskripsi',
+        'best_seller',
         'kategori_produk_id'
     ];
     public function kategori_produk(){

@@ -62,12 +62,14 @@ class ProdukController extends Controller
             'harga_awal' => $request -> harga_awal,
             'harga' => $request -> harga,
             'stok' => $request -> stok,
+            'diskon' => $request -> diskon,
             'tgl_exp' => $request -> tgl_exp,
             'foto' => $fileName,
             'deskripsi' => $request -> deskripsi,
+            'best_seller' => $request -> best_seller ? 1 : 0,
             'kategori_produk_id' => $request -> kategori_produk_id,
         ]);
-        return redirect()->route('produk.index');
+        return redirect()->route('produk.index')->with('success', 'Produk Berhasil Ditambahkan');
     }
 
     private function generateKodeProduk($kategoriID)
@@ -174,12 +176,14 @@ class ProdukController extends Controller
             'harga_awal' => $request -> harga_awal,
             'harga' => $request -> harga,
             'stok' => $request -> stok,
+            'diskon' => $request -> diskon,
             'tgl_exp' => $request -> tgl_exp,
             'foto' => $fileName,
             'deskripsi' => $request -> deskripsi,
+            'best_seller' => $request -> best_seller ? 1 : 0,
             'kategori_produk_id' => $request -> kategori_produk_id,
         ]);
-        return redirect('admin/produk');
+        return redirect('admin/produk')->with('success', 'Update Berhasil');
     }
 
     /**
@@ -187,7 +191,9 @@ class ProdukController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+        $produk->delete();
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus');
     }
 
     public function showKategori($id)

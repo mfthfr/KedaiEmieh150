@@ -64,7 +64,7 @@ class ReservasiController extends Controller
             'bukti'=>$fileName,
             'meja_id'=>$request->meja_id
         ]);
-        return redirect()->route('reservasi.index');
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil');
     }
 
     public function checkAvailability(Request $request)
@@ -123,7 +123,9 @@ class ReservasiController extends Controller
     
     public function edit(string $id)
     {
-        //
+        $reservasi = Reservasi::findOrFail($id);
+        $meja = Meja::all();
+        return view('admin.reservasi.edit', compact('reservasi', 'meja'));
     }
 
     
@@ -136,12 +138,17 @@ class ReservasiController extends Controller
         if($request->status === 'Disetujui'){
 
         }
-        return redirect()->route('reservasi.index');
+
+        return redirect()->route('reservasi.index')->with('success', 'Update berhasil');
     }
 
+
     
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $reservasi = Reservasi::findOrFail($id);
+        $reservasi->delete();
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');
     }
+
 }

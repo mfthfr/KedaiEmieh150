@@ -63,13 +63,35 @@
                                         <a href="{{ route('laporan.downloadPDF', $l->id) }}" class="btn btn-sm btn-success">
                                             <i class="fas fa-download"></i>
                                         </a>
-                                        <form action="{{ route('laporan.destroy', $l->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <!-- Tombol Hapus -->
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal{{$l->id}}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        <!-- Modal Hapus -->
+                                        <div class="modal fade" id="deleteModal{{$l->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h3 class="modal-title" id="deleteModalLabel">Hapus Laporan</h3>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus laporan <br><b>{{$l->kode}}</b>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Kembali</button>
+                                                <form action="{{ route('laporan.destroy', $l->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <!-- Batas Modal Hapus -->
                                     </td>
                                 </tr>
                                 @endforeach

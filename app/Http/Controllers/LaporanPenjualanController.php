@@ -130,6 +130,8 @@ class LaporanPenjualanController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $laporan = LaporanPenjualan::findOrFail($id);
+        $laporan->delete();
+        return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dihapus');
     }
 }

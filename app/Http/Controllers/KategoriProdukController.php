@@ -34,7 +34,7 @@ class KategoriProdukController extends Controller
         DB::table('kategori_produk')->insert([
             'nama_kategori' => $request -> nama_kategori,
         ]);
-        return redirect('admin/kategori_produk');
+        return redirect('admin/kategori_produk')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -67,7 +67,7 @@ class KategoriProdukController extends Controller
         DB::table('kategori_produk')
             ->where('id', $id)
             ->update(['nama_kategori' => $request -> nama_kategori]);
-        return redirect('admin/kategori_produk');
+        return redirect('admin/kategori_produk')->with('success', 'Update berhasil');
     }
 
     /**
@@ -78,7 +78,7 @@ class KategoriProdukController extends Controller
         //menghapus kategori produk
         $kategori = KategoriProduk::find($id);
         $kategori->delete();
-        return redirect('admin/kategori_produk');
+        return redirect('admin/kategori_produk')->with('success', 'Berhasil Menghapus Data');
 
     }
 }

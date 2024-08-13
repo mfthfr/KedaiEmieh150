@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><i>Contact Us</i></h1>
-                    <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+                    <h1><i>Kontak Kami</i></h1>
+                    <p class="pt-2"><i>Mari Berbincang! Hubungi Kami untuk berkolaborasi atau untuk pertanyaan apa pun.</i></p>
                 </div>
             </div>
         </div>

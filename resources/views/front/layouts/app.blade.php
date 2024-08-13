@@ -99,8 +99,8 @@
                     <div class="col-md-4">
                         <div class="single-widget single-widget3">
                             <h5 class="mb-4">opening hours</h5>
-                            <p>Senin - Jum'at .............. 15 pm - 22 pm</p>
-                            <p>Minggu ............. 15 pm - 22 pm</p>
+                            <p>Senin - Jum'at .............. 16 pm - 22 pm</p>
+                            <p>Minggu ............. 16 pm - 22 pm</p>
                         </div>
                     </div>
                 </div>

@@ -59,6 +59,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="text4" class="col-4 col-form-label">Diskon</label> 
+                            <div class="col-8">
+                                <input id="text4" name="diskon" type="number" class="form-control" value="{{$p->diskon}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="text4" class="col-4 col-form-label">Tanggal Kedaluarsa</label> 
                             <div class="col-8">
                                 <input id="text4" name="tgl_exp" type="date" class="form-control" value="{{$p->tgl_exp}}">
@@ -75,6 +81,12 @@
                             <label for="textarea" class="col-4 col-form-label">Deskripsi</label> 
                             <div class="col-8">
                                 <textarea id="textarea" name="deskripsi" cols="40" rows="5" class="form-control">{{$p->deskripsi}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="best_seller" class="col-4 col-form-label">Best Seller:</label>
+                            <div class="col-8">
+                                <input type="checkbox" id="best_seller" name="best_seller" value="1" {{ $p->best_seller ? 'checked' : '' }}>
                             </div>
                         </div> 
                         <div class="form-group row">

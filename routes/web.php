@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardFrontController;
 use App\Http\Controllers\ReservasiFrontController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\MejaController;
@@ -12,9 +13,7 @@ use App\Http\Controllers\LaporanPenjualanController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('front.home');
-});
+Route::get('/', [DashboardFrontController::class, 'index']);
 // Route::get('/reservasi', function(){
 //     return view('front.reservasi.index');
 // });

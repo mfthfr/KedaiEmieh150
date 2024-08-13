@@ -81,6 +81,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="text4" class="col-4 col-form-label">Diskon</label> 
+                        <div class="col-8">
+                            <input id="text4" name="diskon" type="text" class="form-control @error('diskon') is-invalid @enderror">
+                            @error('diskon')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="text4" class="col-4 col-form-label">Tanggal Kedaluarsa</label> 
                         <div class="col-8">
                             <input id="text4" name="tgl_exp" type="date" class="form-control @error('tgl_exp') is-invalid @enderror">
@@ -113,6 +124,17 @@
                             @enderror
                         </div>
                     </div> 
+                    <div class="form-group row">
+                        <label for="best_seller" class="col-4 col-form-label">Best Seller</label>
+                        <div class="col-8">
+                            <input type="checkbox" id="best_seller" name="best_seller" value="1">
+                            @error('best_seller')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="select" class="col-4 col-form-label">Kategori Produk</label> 
                         <div class="col-8">

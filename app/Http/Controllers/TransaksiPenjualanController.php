@@ -25,9 +25,7 @@ class TransaksiPenjualanController extends Controller
     {
         $kodeTransaksi = $this->generateKodeTransaksi();
         $produk = Produk::all();
-        $aktifTransaksi = TransaksiPenjualan::where('status', 'Pending')
-                            ->orWhere('status', 'Belum Dibayar')
-                            ->get();
+        $aktifTransaksi = TransaksiPenjualan::where('status', 'Belum Dibayar')->get();
         return view('admin.transaksi.create', compact('kodeTransaksi', 'produk', 'aktifTransaksi'));
     }
 
@@ -48,9 +46,6 @@ class TransaksiPenjualanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    /**
- * Store a newly created resource in storage.
- */
     public function store(Request $request)
     {
         $request->validate([
@@ -62,14 +57,15 @@ class TransaksiPenjualanController extends Controller
             'produk.*.jumlah' => 'required|integer|min:1',
             'diskon' => 'nullable|numeric|min:0',
             'pajak' => 'nullable|numeric|min:0',
-        ]);        
+        ]);
 
         $kodeTransaksi = $this->generateKodeTransaksi();
 
         $totalHarga = 0;
         foreach ($request->produk as $item) {
             $produk = Produk::find($item['id']);
-            $totalHarga += $produk->harga * $item['jumlah'];
+            $hargaSetelahDiskon = $produk->harga - ($produk->harga * ($produk->diskon / 100));
+            $totalHarga += $hargaSetelahDiskon * $item['jumlah'];
         }
 
         if ($request->diskon) {
@@ -88,16 +84,16 @@ class TransaksiPenjualanController extends Controller
             'total_harga' => $totalHarga,
         ]);
 
-        // Attach produk to transaksi using pivot table
+        // Attach produk to transaksi using pivot table and update stock
         foreach ($request->produk as $item) {
             $produk = Produk::find($item['id']);
             $transaksi->produk()->attach($produk->id, ['jumlah' => $item['jumlah']]);
+            $produk->stok -= $item['jumlah'];
+            $produk->save();
         }
 
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan.');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil');
     }
-
-
 
 
     /**
@@ -105,10 +101,7 @@ class TransaksiPenjualanController extends Controller
      */
     public function show($id)
     {
-        // Mengambil data transaksi dari database berdasarkan ID
         $transaksi = TransaksiPenjualan::with('produk')->findOrFail($id);
-
-        // Mengembalikan view 'detail' dan meneruskan data transaksi
         return view('admin.transaksi.detail', compact('transaksi'));
     }
 
@@ -129,10 +122,7 @@ class TransaksiPenjualanController extends Controller
         $transaksi->status = $request->status;
         $transaksi->save();
 
-        if($request->status === ''){
-
-        }
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.index')->with('success', 'Update berhasil');
     }
 
     /**
@@ -140,6 +130,8 @@ class TransaksiPenjualanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $transaksi = TransaksiPenjualan::findOrFail($id);
+        $transaksi->delete();
+        return redirect()->route('transaksi.index')->with('success', 'Data berhasil dihapus');
     }
 }

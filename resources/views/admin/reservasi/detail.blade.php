@@ -109,6 +109,7 @@
         </div>
         <div class="card-footer">
             <a href="{{ route('reservasi.index') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('reservasi.edit', $reservasi->id) }}" class="btn btn-primary">Edit Produk</a>
         </div>
     </div>
 </div>

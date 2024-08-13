@@ -64,20 +64,20 @@
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h3 class="modal-title" id="deleteModalLabel">Hapus Kategori Produk</h3>
+                                      <h3 class="modal-title" id="deleteModalLabel">Hapus Produk</h3>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      Apakah anda yakin ingin menghapus kategori produk <br><b>{{$p->nama_kategori}}</b>?
+                                      Apakah anda yakin ingin menghapus produk <br><b>{{$p->nama}}</b>?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                                      <form action="{{ route('kategori_produk.destroy', $p->id) }}" method="POST" style="display:inline;">
+                                      <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Kembali</button>
+                                      <form action="{{ route('produk.destroy', $p->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                       </form>
                                     </div>
                                   </div>

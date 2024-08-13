@@ -75,7 +75,7 @@
                     <div class="food-content">
                         <div class="d-flex justify-content-between">
                             <h5>{{ $p->nama }}</h5>
-                            <span class="style-change">Rp{{ number_format($p->harga, 0, ',', '.') }}</span>
+                            <span class="style-change" style="margin-left:20px;">Rp{{ number_format($p->harga, 0, ',', '.') }}</span>
                         </div>
                         <p class="pt-3">{{ $p->deskripsi }}</p>
                     </div>

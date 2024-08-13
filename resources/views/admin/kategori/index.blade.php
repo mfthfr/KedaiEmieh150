@@ -33,8 +33,8 @@
             <input type="text" name="nama_kategori" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kategori Produk">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
       </div>
     </div>
@@ -87,8 +87,8 @@
                                                   <input type="text" name="nama_kategori" class="form-control" value="{{$k->nama_kategori}}" placeholder="Kategori Produk">
                                             </div>
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                              <button type="submit" class="btn btn-primary">Save changes</button>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                              <button type="submit" class="btn btn-primary">Simpan</button>
                                               </form>
                                             </div>
                                           </div>
@@ -113,7 +113,7 @@
                                               Apakah anda yakin ingin menghapus kategori produk <br><b>{{$k->nama_kategori}}</b>?
                                             </div>
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Kembali</button>
                                               <form action="{{ route('kategori_produk.destroy', $k->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')

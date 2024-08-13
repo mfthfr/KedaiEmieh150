@@ -59,8 +59,8 @@
                         <label for="jenis_pembayaran" class="col-4 col-form-label">Metode Pembayaran:</label>
                         <div class="col-8">
                             <select class="form-control" id="jenis_pembayaran" name="jenis_pembayaran" required>
-                                <option value="tunai">Tunai</option>
-                                <option value="kartu_kredit">Kartu Kredit</option>
+                                <option value="cash">Cash</option>
+                                <option value="transfer">Transfer</option>
                             </select>
                         </div>
                     </div>
@@ -82,6 +82,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Harga</th>
+                                        <th>Diskon</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -91,8 +92,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $p->nama }}</td>
                                             <td>{{ $p->harga }}</td>
+                                            <td>{{ $p->diskon }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-success add-product" data-id="{{ $p->id }}" data-nama="{{ $p->nama }}" data-harga="{{ $p->harga }}">+</button>
+                                                <button type="button" class="btn btn-success add-product" data-id="{{ $p->id }}" data-nama="{{ $p->nama }}" data-harga="{{ $p->harga }}" data-diskon="{{ $p->diskon }}">+</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -147,12 +149,13 @@
                 const id = this.getAttribute('data-id');
                 const nama = this.getAttribute('data-nama');
                 const harga = parseFloat(this.getAttribute('data-harga'));
+                const diskon = parseFloat(this.getAttribute('data-diskon'));
 
                 let produk = produkTerpilih.find(p => p.id == id);
                 if (produk) {
                     produk.jumlah++;
                 } else {
-                    produkTerpilih.push({ id: id, nama: nama, harga: harga, jumlah: 1 });
+                    produkTerpilih.push({ id: id, nama: nama, harga: harga, diskon: diskon, jumlah: 1 });
                 }
                 updateProdukTerpilih();
             });
@@ -165,12 +168,13 @@
             let totalHarga = 0;
 
             produkTerpilih.forEach(produk => {
-                totalHarga += produk.harga * produk.jumlah;
+                const hargaSetelahDiskon = produk.harga - (produk.harga * (produk.diskon / 100))
+                totalHarga += hargaSetelahDiskon * produk.jumlah;
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${produk.nama}</td>
                     <td>${produk.jumlah}</td>
-                    <td>${produk.harga * produk.jumlah}</td>
+                    <td>${hargaSetelahDiskon * produk.jumlah}</td>
                     <td><button type="button" class="btn btn-danger remove-product" data-id="${produk.id}">-</button></td>
                     <input type="hidden" name="produk[${produk.id}][id]" value="${produk.id}">
                     <input type="hidden" name="produk[${produk.id}][jumlah]" value="${produk.jumlah}">

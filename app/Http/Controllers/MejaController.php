@@ -44,7 +44,7 @@ class MejaController extends Controller
             'kapasitas'=>$request->kapasitas,
             'status'=>$request->status
         ]);
-        return redirect('admin/meja');
+        return redirect('admin/meja')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function show(string $id)
@@ -70,13 +70,13 @@ class MejaController extends Controller
             ->update([
                 'kapasitas' => $request->kapasitas
             ]);            
-        return redirect('admin/meja');
+        return redirect('admin/meja')->with('success', 'Update berhasil');
     }
 
     public function destroy(string $id)
     {
         $meja = Meja::find($id);
         $meja->delete();
-        return redirect('admin/meja');
+        return redirect('admin/meja')->with('success', 'Berhasil Menghapus Data');
     }
 }
